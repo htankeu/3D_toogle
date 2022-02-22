@@ -1,0 +1,104 @@
+body{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0;
+}
+
+main{
+    width: 300px;
+    padding: 0.2rem;
+    margin: 10rem auto;
+    border-radius: 6px;
+    background: #f1f6f6;
+}
+
+.button{
+    position: relative;
+    width: 120px;
+    height: 59px;
+    margin: 2rem auto;
+}
+
+.checkbox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    z-index: 3;
+    opacity: 0;
+}
+
+.box, .background{
+    position:absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+}
+
+.box{
+    z-index: 2;
+    perspective: 110px;
+}
+
+.box span{
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    width: 54px;
+    height: 49px;
+    border-radius: 3px;
+    background: #f44336;
+    transform: rotateY(-180deg);
+    transform-origin: 0% 50%;
+    transition: 0.6s ease all;
+    z-index: 1;
+}
+
+.background{
+    width: 100%;
+    background: #f1c1c1;
+    border-radius: 4px;
+    transition: 0.2s ease;
+    z-index: 1;
+}
+
+.background::before,.background::after{
+   position: absolute;
+   transition: 0.5s linear;
+   font-weight: bold; 
+   top: 50%;
+   transform:translateY(-50%) ;
+}
+
+.background::before{
+    content:"I refuse";
+    left: -80px;
+    color: #f1c1c1;
+}
+
+.background::after{
+    content:"I accept";
+    right: -80px;
+    color: #03a9f4;
+    opacity: 0;
+}
+
+.checkbox:checked + .box span{
+    background: #03a9f4;
+    transform: rotateY(0);
+}
+
+.checkbox:checked ~ .background{
+    background: #c8e7f3;
+}
+
+.checkbox:checked ~ .background::before{
+    opacity: 0;
+}
+
+.checkbox:checked ~ .background::after{
+    opacity: 1;
+}
